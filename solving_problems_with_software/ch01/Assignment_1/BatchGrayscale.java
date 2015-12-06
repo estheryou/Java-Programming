@@ -12,26 +12,26 @@ import java.io.*;
  */
 public class BatchGrayscale {
 
-    /*public void doSave() {
-        DirectoryResource dr = new DirectoryResource();
-        // loop files
-        for(File f : dr.selectedFiles()) {
-            ImageResource image = new ImageResource(f);
-            String fname = image.getFileName();
-            String newName = "copy-" + fname;
-            image.setFileName(newName);
-            image.draw();
-            image.save();
-        }
-    }
-    */
-    
-    //I started with the image I wanted (inImage)
-	public ImageResource makeGray(ImageResource inImage) {
-		//I made a blank image of the same size
-		ImageResource outImage = new ImageResource(inImage.getWidth(), inImage.getHeight());
-		//for each pixel in outImage
-		for (Pixel pixel: outImage.pixels()) {
+  /*public void doSave() {
+      DirectoryResource dr = new DirectoryResource();
+      // loop files
+      for(File f : dr.selectedFiles()) {
+          ImageResource image = new ImageResource(f);
+          String fname = image.getFileName();
+          String newName = "copy-" + fname;
+          image.setFileName(newName);
+          image.draw();
+          image.save();
+      }
+  }
+  */
+  
+  //I started with the image I wanted (inImage)
+  public ImageResource makeGray(ImageResource inImage) {
+	  //I made a blank image of the same size
+	  ImageResource outImage = new ImageResource(inImage.getWidth(), inImage.getHeight());
+	  //for each pixel in outImage
+	  for (Pixel pixel: outImage.pixels()) {
 			//look at the corresponding pixel in inImage
 			Pixel inPixel = inImage.getPixel(pixel.getX(), pixel.getY());
 			//compute inPixel's red + inPixel's blue + inPixel's green
@@ -44,22 +44,21 @@ public class BatchGrayscale {
 			//set pixel's blue to average
 			pixel.setBlue(average);
 		}
-		//outImage is your answer
-		return outImage;
-	}
+	  //outImage is your answer
+	  return outImage;
+  } 
 
-	public void selectAndConvert () {
-		DirectoryResource dr = new DirectoryResource();
-		for (File f : dr.selectedFiles()) {
-			ImageResource inImage = new ImageResource(f);
-			String fname = inImage.getFileName();
-			String newFileName = "gray-" + fname;
-			ImageResource gray = makeGray(inImage);
-			gray.setFileName(newFileName);
-			gray.draw();
-			gray.save();
-		}
-	}
-
+  public void selectAndConvert () {
+    DirectoryResource dr = new DirectoryResource();
+    for (File f : dr.selectedFiles()) {
+      ImageResource inImage = new ImageResource(f);
+      String fname = inImage.getFileName();
+      String newFileName = "gray-" + fname;
+      ImageResource gray = makeGray(inImage);
+      gray.setFileName(newFileName);
+      gray.draw();
+      gray.save();
+    }
+  }
 
 }
